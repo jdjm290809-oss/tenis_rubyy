@@ -1,0 +1,27 @@
+<section id="cuestionario-nativo" style="background-color: #0b0c10; color: white; padding: 20px; border: 2px solid #ff007f; border-radius: 8px; max-width: 600px; margin: 20px auto;">
+    <h2 style="color: #fffb00; text-align: center;">Cuestionario de Satisfacción</h2>
+    <form action="#" method="POST">
+        <label for="nombre">Nombre completo:</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" style="padding: 10px; border-radius: 5px; border: 1px solid #00ffcc; background: #1f2833; color: white;">
+
+        <label for="marca-favorita">¿Cuál es tu marca de tenis favorita?</label>
+        <select id="marca-favorita" name="marca" style="padding: 10px; border-radius: 5px; border: 1px solid #00ffcc; background: #1f2833; color: white;">
+            <option value="charly">Charly</option>
+            <option value="under-armour">Under Armour</option>
+            <option value="puma">Puma</option>
+            <option value="nike">Nike</option>
+            <option value="adidas">Adidas</option>
+        </select>
+
+        <label>¿Cómo calificarías nuestra tienda?</label>
+        <div style="display: flex; gap: 15px;">
+            <label><input type="radio" name="calificacion" value="excelente"> Excelente</label>
+            <label><input type="radio" name="calificacion" value="bueno"> Bueno</label>
+            <label><input type="radio" name="calificacion" value="regular"> Regular</label>
+        </div>
+
+        <button type="submit" style="background-color: #00ffcc; color: black; font-weight: bold; padding: 12px; border: none; border-radius: 20px; cursor: pointer; text-transform: uppercase;">
+            Enviar Respuestas
+        </button>
+    </form>
+</section>

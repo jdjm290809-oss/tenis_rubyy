@@ -1,0 +1,742 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenis Rap-Pid</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;700;900&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+      /* Ajuste del formulario */
+      form {
+        display: flex;
+        flex-direction: column; 
+        gap: 15px;              
+        padding-top: 60px;      
+      }
+
+      /* Control del cuadro de texto de dirección */
+      textarea {
+        width: 100%;            
+        max-width: 100%;        
+        box-sizing: border-box; 
+        padding: 10px;          
+        border-radius: 5px;     
+      }
+    </style>
+    <style>
+        /* === ESTILOS DEL MENÚ DE NAVEGACIÓN === */
+        nav {
+            background: linear-gradient(90deg, #000000, #ff0000, #000000);
+            padding: 18px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 0 25px #ff0000, 0 4px 15px rgba(0,0,0,0.9);
+            border-bottom: 3px solid #ffff00;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: 900;
+            font-size: 20px;
+            transition: all 0.3s;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+        nav a:hover {
+            color: #ffff00;
+            text-shadow: 0 0 10px #ffff00;
+        }
+
+        /* === ESTILOS GENERALES === */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #000000, #2c004e, #001a4d);
+        }
+        section {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 30px;
+            background: #0a0a1a;
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(255, 0, 100, 0.5);
+            border: 5px solid;
+            border-image: linear-gradient(45deg, #ff0080, #00fff5, #ffff00) 1;
+            color: white;
+        }
+        header {
+            background: linear-gradient(135deg, #ff0000, #ffcc00, #ff0080);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            border-bottom: 5px solid black;
+        }
+        header img {
+            max-width: 140px;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 0 20px white;
+        }
+        h1 {
+            color: #ffffff;
+            font-size: 6em;
+            font-family: 'Bebas Neue', cursive;
+            text-shadow: 4px 4px 0px #000, 0 0 20px #ffcc00;
+            letter-spacing: 5px;
+            margin: 10px 0;
+            -webkit-text-stroke: 2px black;
+            text-align: center;
+        }
+        h2, h3 {
+            color: #ffff00;
+            border-bottom: 3px solid #ff0080;
+            padding-bottom: 10px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 2.5em;
+            text-shadow: 0 0 10px #ff0080;
+            font-weight: 900;
+            text-align: center;
+        }
+
+        /* === ESTILOS DEL CARRUSEL === */
+        .carrusel {
+            width: 85%;
+            max-width: 650px;
+            margin: 30px auto;
+            overflow: hidden;
+            position: relative;
+            border-radius: 20px;
+            box-shadow: 0 0 40px #00fff5;
+            border: 8px solid #ffffff;
+        }
+        .imagenes {
+            display: flex;
+            transition: transform 0.8s ease-in-out;
+            width: 100%;
+        }
+        .imagen-con-texto {
+            width: 100%;
+            flex-shrink: 0;
+            position: relative;
+            cursor: pointer;
+        }
+        .imagen-con-texto img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .descripcion {
+            background: linear-gradient(to top, rgba(0,0,0,1), transparent);
+            color: #00fff5;
+            padding: 20px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: 900;
+            font-family: 'Oswald', sans-serif;
+            text-shadow: 0 0 10px #00fff5;
+        }
+        .precio {
+            background: rgba(0, 0, 0, 0.8);
+            color: #ffff00;
+            font-size: 26px;
+            font-weight: 900;
+            font-family: 'Oswald', sans-serif;
+            text-align: center;
+            padding: 10px;
+            text-shadow: 0 0 10px #ff0000;
+        }
+        .boton {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: linear-gradient(135deg, #ffff00, #ff8800);
+            color: #000;
+            border: none;
+            padding: 15px 20px;
+            font-size: 26px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-weight: 900;
+            box-shadow: 0 0 20px #ffff00;
+            z-index: 10;
+            transition: transform 0.2s;
+        }
+        .boton:hover {
+            background: linear-gradient(135deg, #ff8800, #ffff00);
+            transform: scale(1.2);
+            box-shadow: 0 0 30px #ffff00;
+        }
+        .prev { left: 15px; }
+        .next { right: 15px; }
+        .indicadores {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+        .punto {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.2);
+            cursor: pointer;
+            border: 3px solid white;
+        }
+        .punto.activo {
+            background-color: #ff0080;
+            transform: scale(1.5);
+            box-shadow: 0 0 15px #ff0080;
+        }
+
+        /* === BOTONES DE CATEGORÍA === */
+        .botones-categoria {
+            text-align: center;
+            margin: 25px 0;
+        }
+        .btn-categoria {
+            background: linear-gradient(135deg, #00fff5, #00ff41);
+            color: #000;
+            border: none;
+            padding: 16px 35px;
+            margin: 10px;
+            font-size: 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 900;
+            box-shadow: 0 0 20px #00fff5;
+            transition: all 0.3s;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+        .btn-categoria:hover {
+            background: linear-gradient(135deg, #ff0080, #ff0000);
+            color: white;
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 0 30px #ff0080;
+        }
+        .btn-categoria.active {
+            background: linear-gradient(135deg, #ff0080, #ff0000);
+            color: white;
+            box-shadow: 0 0 30px #ff0080;
+        }
+
+        /* === BOTONES DE MARCAS === */
+        .botones-marcas {
+            text-align: center;
+            margin: 15px 0 25px 0;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            border: 2px dashed #ffff00;
+        }
+        .btn-marca {
+            background: linear-gradient(135deg, #ffcc00, #ff8800);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 900;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+        .btn-marca:hover {
+            background: linear-gradient(135deg, #00fff5, #0088ff);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #00fff5;
+        }
+
+        /* === ESTILOS DE LA TABLA === */
+        .seccion-tabla {
+            overflow-x: auto;
+        }
+        .tabla-dinamica {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-family: 'Roboto', sans-serif;
+        }
+        .tabla-dinamica th, .tabla-dinamica td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            vertical-align: middle;
+        }
+        .tabla-dinamica th {
+            background: linear-gradient(135deg, #ff0080, #ff0000);
+            color: white;
+            font-size: 1.2em;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+        .tabla-dinamica tr:hover {
+            background: rgba(0, 255, 245, 0.1);
+        }
+        .img-tabla {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid white;
+            box-shadow: 0 0 10px rgba(0,255,255,0.5);
+        }
+        .etiqueta-marca {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: black;
+        }
+        .etiqueta-marca.nike { background: #ffcc00; }
+        .etiqueta-marca.adidas { background: #ffffff; }
+        .etiqueta-marca.puma { background: #ff0000; color: white; }
+        .etiqueta-marca.charly { background: #000000; color: white; border: 1px solid white; }
+        .etiqueta-marca.under-armour { background: #005ea5; color: white; }
+
+        .btn-comprar {
+            background: linear-gradient(135deg, #00fff5, #00ff41);
+            color: #000;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .btn-comprar:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px #00fff5;
+        }
+
+        /* === REDES SOCIALES === */
+        .redes ul {
+            list-style: none;
+            padding: 0;
+            text-align: center;
+        }
+        .redes li {
+            display: inline-block;
+            margin: 15px 25px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .redes a {
+            font-size: 70px;
+            margin: 10px;
+            transition: transform 0.3s;
+            display: inline-block;
+            filter: drop-shadow(0 0 10px currentColor);
+        }
+        .redes a:hover {
+            transform: scale(1.4) rotate(10deg);
+            filter: drop-shadow(0 0 20px currentColor);
+        }
+        .fa-facebook { color: #1877f2; }
+        .fa-instagram { color: #E4405F; }
+
+        /* === MAPA / UBICACIÓN === */
+        #ubicacion iframe {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 255, 245, 0.3);
+        }
+
+        footer {
+            background: linear-gradient(90deg, #000000, #ff0000, #000000);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 30px;
+            font-size: 18px;
+            box-shadow: 0 -4px 20px #ff0000;
+            font-family: 'Oswald', sans-serif;
+            border-top: 3px solid #ffff00;
+        }
+
+        p, li {
+            font-size: 1.1em;
+            line-height: 1.6;
+            text-align: center;
+        }
+        strong {
+            color: #00fff5;
+            text-shadow: 0 0 5px #00fff5;
+        }
+
+        .imagen-grande {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .imagen-grande img {
+            max-width: 90%;
+            max-height: 90%;
+            border: 5px solid white;
+            box-shadow: 0 0 50px #00fff5;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#productos">Productos</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#contacto">Contacto</a>
+    <a href="#horario">Horario</a>
+    <a href="#ubicacion">Ubicación</a>
+    <a href="#redes">Redes</a>
+</nav>
+
+<header id="inicio">
+    <img src="WhatsApp Image 2026-06-02 at 5.44.44 PM.jpeg" alt="Logo Tenis Rap-Pid">
+    <h1> TENIS RAP-PID </h1>
+    <p>“Si no te convence o no te queda, ¡puedes devolverlo sin problemas!”</p>
+</header>
+
+<section id="productos">
+    <h2>Tipos de Tenis</h2>
+
+    <ul style="list-style: none; padding: 0;">
+        <li>Tenis Deportivos</li>
+        <li>Tenis Clásicos y Casuales</li>
+        <li>Tenis Urbanos</li>
+    </ul>
+
+    <div class="botones-categoria">
+        <button class="btn-categoria" onclick="mostrarCategoria('deportivos', event)">Tenis Deportivos</button>
+        <button class="btn-categoria" onclick="mostrarCategoria('clasicos', event)">Tenis Clásicos y Casuales</button>
+        <button class="btn-categoria" onclick="mostrarCategoria('urbanos', event)">Tenis Urbanos</button>
+    </div>
+
+    <div id="botones-marcas" class="botones-marcas"></div>
+
+    <div class="carrusel">
+        <div class="imagenes" id="contenedor-imagenes"></div>
+        <button class="boton prev" onclick="cambiarImagen(-1)">«</button>
+        <button class="boton next" onclick="cambiarImagen(1)">»</button>
+        <div class="indicadores" id="indicadores"></div>
+    </div>
+</section>
+
+<head>
+    <section id="contacto">
+    
+
+    <meta charset="UTF-8">
+    <section id="formulario-contacto">
+    <h2>Contacto</h2>
+
+    <form id="contactForm" action="http://localhost:3000/guardar" method="POST">
+
+        <label for="nombre">Nombre</label>
+        <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            placeholder="Escribe tu nombre"
+            required>
+
+        <label for="correo">Correo electrónico</label>
+        <input
+            type="email"
+            id="correo"
+            name="correo"
+            placeholder="correo@ejemplo.com"
+            required>
+
+        <label for="mensaje">Mensaje</label>
+        <textarea
+            id="mensaje"
+            name="mensaje"
+            rows="5"
+            placeholder="Escribe tu mensaje..."
+            required></textarea>
+
+        <button type="submit" class="btn-categoria">
+            Enviar Mensaje
+        </button>
+
+    </form>
+    </section>
+
+    <p id="respuesta"></p>
+</section>
+    </form>
+</body>
+        </button>
+    </form>
+</section>
+
+<section id="tabla-productos" class="seccion-tabla">
+    <h2>Nuestros Productos Destacados</h2>
+    <div class="contenedor-tabla">
+        <table class="tabla-dinamica">
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Producto / Servicio</th>
+                    <th>Marca / Línea</th>
+                    <th>Precio</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpo-tabla"></tbody>
+        </table>
+    </div>
+</section>
+
+<section id="nosotros">
+    <h2>Quienes Somos Nosotros</h2>
+    <p><strong>Calidad y Precio:</strong> Somos una empresa con distintas sucursales y nosotros ofrecemos el producto de tenis, desde que fundamos esta empresa ya llevamos 7 años trabajando con mucha dedicación para siempre dar una buena calidad.</p>
+    <h3>Misión</h3>
+    <p>Lo que ofrecemos es una alta calidad, todo con el motivo de siempre tener satisfechos a nuestros clientes y cumplir sus necesidades.</p>
+    <h3>Visión</h3>
+    <p>Que podamos convertir a esta empresa en una gran empresa con éxito, con confianza, siendo una gran referencia y abriendo más sucursales.</p>
+</section>
+
+
+
+<section id="horario">
+    <h2> Horario Laboral</h2>
+    <div class="horario">
+        <p><strong>Lunes a Viernes:</strong> 7:00 a.m. - 5:00 p.m.</p>
+        <p><strong>Sábado:</strong> 9:00 a.m. - 3:00 p.m.</p>
+        <p><strong>Domingo:</strong> 8:00 a.m. - 7:00 p.m.</p>
+    </div>
+</section>
+
+<section id="ubicacion">
+    <h2>Ubicación</h2>
+    <p>006, 54255 Octeyuco 2000, Méx.</p>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d278.727303336996!2d-99.58148735581628!3d19.962605784829233!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1781308818284!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> 
+</section>
+
+<section id="redes" class="redes">
+    <h2>SÍGUENOS EN REDES SOCIALES</h2>
+    <ul>
+        <li>
+            <strong>Facebook:</strong> Tenis-rap-pid.oficial<br>
+            <a href="https://www.facebook.com/share/1AhCyVN1LK/" target="_blank">
+                <i class="fa-brands fa-facebook"></i>
+            </a>
+        </li>
+        <li>
+            <strong>Instagram:</strong> rappidnum1_oficial<br>
+            <a href="https://www.instagram.com/rappidnum1_oficial?utm_source=qr&igsh=MTZxemNtaWd0eHJreA==" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+        </li>
+    </ul>
+</section>
+
+<footer>
+    <p>© 2026 Tenis Rap-Pid - Todos los derechos reservados</p>
+</footer>
+
+<script>
+    const categories = {
+        deportivos: [
+            { src: "imagenes/1087428003-MNO-3_600x.webp", alt: "Tenis Deportivos", desc: "Tenis Deportivos - Alto rendimiento", marca: "charly", precio: "$1,200" },
+            { src: "imagenes/1174409397.avif", alt: "Tenis Deportivos", desc: "Tenis Deportivos - Alto rendimiento", marca: "charly", precio: "$1,350" },
+            { src: "imagenes/shopping.webp", alt: "Tenis Deportivos", desc: "Tenis Deportivos - Alto rendimiento", marca: "Under Armour", precio: "$1,500" },
+            { src: "imagenes/1371375-800-auto.webp", alt: "Tenis Deportivos", desc: "Tenis Deportivos - Alto rendimiento", marca: "puma", precio: "$1,450" },
+            { src: "imagenes/shopping (1).webp", alt: "Tenis Deportivos", desc: "Tenis Deportivos - Alto rendimiento", marca: "Under Armour", precio: "$1,550" },
+            { src: "imagenes/cbf8bf69-f993-4145-bf7d-99c41b16e624.3bcc152eccdf256dcd1474865e175297.avif", alt: "Tenis Deportivos", desc: "Tenis Deportivos - Alto rendimiento", marca: "puma", precio: "$1,600" },
+            { src: "imagenes/1033173-0001V1.jpg", alt: "Tenis Deportivos", desc: "Tenis Deportivos - Alto rendimiento", marca: "nike", precio: "$1,800" },
+            { src: "imagenes/397036-800-800.webp", alt: "Tenis Deportivos", desc: "Tenis Deportivos - Alto rendimiento", marca: "nike", precio: "$1,850" },
+            { src: "imagenes/4a3fa81b0428fe65bc7328795d03c824.jpeg", alt: "Tenis Deportivos", desc: "Tenis Deportivos - Alto rendimiento", marca: "puma", precio: "$1,700" },
+            { src: "imagenes/2IE8149-NGR-003.webp", alt: "Tenis Deportivos", desc: "Tenis Deportivos - Alto rendimiento", marca: "adidas", precio: "$1,750" },
+            { src: "imagenes/20230308124115_IMG_4852.jpg", alt: "Tenis Deportivos", desc: "Tenis Deportivos - Alto rendimiento", marca: "adidas", precio: "$1,650" },
+            { src: "imagenes/63f65608282af_hp2377-1jpg.jpg", alt: "Tenis Deportivos", desc: "Tenis Deportivos - Alto rendimiento", marca: "adidas", precio: "$1,900" }
+        ],
+        clasicos: [
+            { src: "imagenes/4b40d359-de8c-4411-9197-2cc84c5cd454.624bc29ba7b4198d7c2dbb22ca043ea9.avif", alt: "Tenis Clásicos", desc: "Tenis Clásicos y Casuales - Estilo atemporal", marca: "nike", precio: "$1,100" },
+            { src: "imagenes/nike.webp", alt: "Tenis Clásicos", desc: "Tenis Clásicos y Casuales - Estilo atemporal", marca: "nike", precio: "$1,100" },
+            { src: "imagenes/SAMBA.webp", alt: "Tenis Clásicos", desc: "Tenis Clásicos y Casuales - Estilo atemporal", marca: "adidas", precio: "$1,250" },
+            { src: "imagenes/adidas.webp", alt: "Tenis Clásicos", desc: "Tenis Clásicos y Casuales - Estilo atemporal", marca: "adidas", precio: "$1,250" },
+            { src: "imagenes/puma.jpg", alt: "Tenis Clásicos", desc: "Tenis Clásicos y Casuales - Estilo atemporal", marca: "puma", precio: "$1,050" },
+            { src: "imagenes/pumas.jpg", alt: "Tenis Clásicos", desc: "Tenis Clásicos y Casuales - Estilo atemporal", marca: "puma", precio: "$1,050" }
+
+        ],
+        urbanos: [
+            { src: "imagenes/127407-CF-12_1000x.webp", alt: "Tenis Urbanos", desc: "Tenis Urbanos - Moda y confort", marca: "charly", precio: "$950" },
+            { src: "imagenes/09JMWX-1.webp", alt: "Tenis Urbanos", desc: "Tenis Urbanos - Moda y confort", marca: "nike", precio: "$1,300" },
+            { src: "imagenes/069307_861_3.webp", alt: "Tenis Urbanos", desc: "Tenis Urbanos - Moda y confort", marca: "charly", precio: "$980" },
+            { src: "imagenes/7940014_1.webp", alt: "Tenis Urbanos", desc: "Tenis Urbanos - Moda y confort", marca: "puma", precio: "$1,150" },
+            { src: "imagenes/1723344469126160jpg.jpg", alt: "Tenis Urbanos", desc: "Tenis Urbanos - Moda y confort", marca: "puma", precio: "$1,200" },
+            { src: "imagenes/1185063-0.webp", alt: "Tenis Urbanos", desc: "Tenis Urbanos - Moda y confort", marca: "nike", precio: "$1,350" }
+        ]
+    };
+
+    let categoriaActual = 'deportivos';
+    let indice = 0;
+    let imagenesActuales = [];
+    let filtroMarca = 'todas';
+
+    function mostrarCategoria(tipo, evento) {
+        categoriaActual = tipo;
+        imagenesActuales = categories[tipo];
+        indice = 0;
+        filtroMarca = 'todas';
+
+        if (evento && evento.currentTarget) {
+            const botones = document.querySelectorAll('.btn-categoria');
+            botones.forEach(btn => btn.classList.remove('active'));
+            evento.currentTarget.classList.add('active');
+        }
+
+        actualizarBotonesMarcas();
+        renderizarImagenesCarrusel();
+        actualizarTabla();
+    }
+
+    function actualizarBotonesMarcas() {
+         const contenedor = document.getElementById('botones-marcas');
+         contenedor.innerHTML = '';
+         const marcas = [...new Set(categories[categoriaActual].map(img => img.marca))];
+         
+         const btnTodas = document.createElement('button');
+         btnTodas.className = 'btn-marca';
+         btnTodas.textContent = 'Todas las Marcas';
+         btnTodas.style.background = 'linear-gradient(135deg, #ff0080, #ff0000)';
+         btnTodas.style.color = 'white';
+         btnTodas.onclick = () => filtrarPorMarca('todas');
+         contenedor.appendChild(btnTodas);
+         
+         marcas.forEach(marca => {
+             const btn = document.createElement('button');
+             btn.className = 'btn-marca';
+             btn.textContent = marca.toUpperCase();
+             btn.onclick = () => filtrarPorMarca(marca);
+             contenedor.appendChild(btn);
+         });
+    }
+
+    function filtrarPorMarca(marca) {
+         filtroMarca = marca;
+         indice = 0;
+         
+         if (marca === 'todas') {
+             imagenesActuales = categories[categoriaActual];
+         } else {
+             imagenesActuales = categories[categoriaActual].filter(img => img.marca.toLowerCase() === marca.toLowerCase());
+         }
+         
+         renderizarImagenesCarrusel();
+         actualizarTabla();
+    }
+
+    function renderizarImagenesCarrusel() {
+         const contenedor = document.getElementById('contenedor-imagenes');
+         const indicadoresContenedor = document.getElementById('indicadores');
+         
+         contenedor.innerHTML = '';
+         indicadoresContenedor.innerHTML = ''; 
+         
+         if(imagenesActuales.length === 0) {
+             contenedor.innerHTML = `<h3 style="text-align:center; color: yellow; width: 100%;">Próximamente imágenes de esta marca 😎</h3>`;
+             return;
+         }
+         
+         imagenesActuales.forEach((img, i) => {
+             const div = document.createElement('div');
+             div.className = 'imagen-con-texto';
+             div.innerHTML = `
+                 <img src="${img.src}" alt="${img.alt}">
+                 <div class="descripcion">${img.desc} <br> <span style="color: #ffcc00;">${img.marca ? img.marca.toUpperCase() : ''}</span></div>
+                 <div class="precio">${img.precio}</div>
+             `;
+             div.addEventListener('dblclick', () => ampliarImagen(img.src));
+             contenedor.appendChild(div);
+             
+             const punto = document.createElement('div');
+             punto.classList.add('punto');
+             if (i === 0) punto.classList.add('activo');
+             punto.addEventListener('click', () => irAImagen(i));
+             indicadoresContenedor.appendChild(punto);
+         });
+         
+         actualizarCarrusel();
+    }
+
+    function actualizarCarrusel() {
+         const contenedor = document.getElementById('contenedor-imagenes');
+         if (contenedor) {
+             contenedor.style.transform = `translateX(-${indice * 100}%)`;
+         }
+         
+         const todosPuntos = document.querySelectorAll('.punto');
+         todosPuntos.forEach((punto, index) => {
+             punto.classList.toggle('activo', index === indice);
+         });
+    }
+
+    function cambiarImagen(direccion) {
+         const total = imagenesActuales.length;
+         if(total === 0) return;
+         indice = (indice + direccion + total) % total;
+         actualizarCarrusel();
+    }
+
+    function irAImagen(numero) {
+         indice = numero;
+         actualizarCarrusel();
+    }
+
+    function ampliarImagen(src) {
+         const div = document.createElement('div');
+         div.className = 'imagen-grande';
+         div.innerHTML = `<img src="${src}" alt="Imagen ampliada">`;
+         div.addEventListener('click', () => div.remove());
+         document.body.appendChild(div);
+    }
+
+    function actualizarTabla() {
+         const cuerpoTabla = document.getElementById('cuerpo-tabla');
+         cuerpoTabla.innerHTML = '';
+         imagenesActuales.forEach(producto => {
+             const fila = document.createElement('tr');
+             fila.innerHTML = `
+                 <td><img src="${producto.src}" alt="${producto.alt}" class="img-tabla"></td>
+                 <td>${producto.desc}</td>
+                 <td><span class="etiqueta-marca ${producto.marca.toLowerCase().replace(' ', '-')}">${producto.marca}</span></td>
+                 <td><strong>${producto.precio}</strong></td>
+                 <td><a href="#" class="btn-comprar">Ver detalles</a></td>
+             `;
+             cuerpoTabla.appendChild(fila);
+         });
+    }
+
+    window.onload = () => {
+         mostrarCategoria('deportivos');
+    };
+</script>
+</body>
+</html>
