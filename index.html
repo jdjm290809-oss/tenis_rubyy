@@ -449,50 +449,34 @@
     <section id="contacto">
     
 
-    <meta charset="UTF-8">
-    <section id="formulario-contacto">
-    <h2>Contacto</h2>
+    
 
-    <form id="contactForm" action="http://localhost:3000/guardar" method="POST">
+    <form
+        name="clientes"
+        method="POST"
+        data-netlify="true"
+        action="gracias.html">
 
-        <label for="nombre">Nombre</label>
-        <input
-            type="text"
-            id="nombre"
-            name="nombre"
-            placeholder="Escribe tu nombre"
-            required>
+        <input type="hidden" name="form-name" value="clientes">
 
-        <label for="correo">Correo electrónico</label>
-        <input
-            type="email"
-            id="correo"
-            name="correo"
-            placeholder="correo@ejemplo.com"
-            required>
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required>
 
-        <label for="mensaje">Mensaje</label>
-        <textarea
-            id="mensaje"
-            name="mensaje"
-            rows="5"
-            placeholder="Escribe tu mensaje..."
-            required></textarea>
+        <label>Correo:</label>
+        <input type="email" name="correo" required>
 
-        <button type="submit" class="btn-categoria">
-            Enviar Mensaje
-        </button>
+        <label>Mensaje:</label>
+        <textarea name="mensaje" required></textarea>
+
+        <button type="submit">Enviar</button>
 
     </form>
-    </section>
-
-    <p id="respuesta"></p>
 </section>
+        
     </form>
 </body>
-        </button>
-    </form>
-</section>
+
+</html>
 
 <section id="tabla-productos" class="seccion-tabla">
     <h2>Nuestros Productos Destacados</h2>
