@@ -1,66 +1,44 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="5; url=Formulario.html">
-    <title>Gracias</title>
-
-    <style>
-        body{
-            margin:0;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            height:100vh;
-            background:linear-gradient(135deg,#000,#2c004e,#001a4d);
-            color:white;
-            font-family:Arial,sans-serif;
-            text-align:center;
-        }
-
-        .mensaje{
-            background:#111;
-            padding:40px;
-            border-radius:20px;
-            box-shadow:0 0 20px #00fff5;
-            border:3px solid #ffff00;
-        }
-
-        h1{
-            color:#00fff5;
-            font-size:50px;
-        }
-
-        p{
-            font-size:22px;
-        }
-
-        a{
-            display:inline-block;
-            margin-top:20px;
-            padding:12px 25px;
-            background:#ff0080;
-            color:white;
-            text-decoration:none;
-            border-radius:10px;
-            font-weight:bold;
-        }
-
-        a:hover{
-            background:#ff0000;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Contacto</title>
 </head>
+
 <body>
 
-<div class="mensaje">
-    <h1>¡Gracias!</h1>
+    <h1>Formulario de Contacto</h1>
 
-  <p>Tu mensaje fue enviado correctamente.</p>
+    <form 
+        name="clientes" 
+        method="POST" 
+        data-netlify="true"
+        action="/gracias.html">
 
-<p>Serás redirigido al formulario en <strong>5 segundos</strong>.</p>
+        <input type="hidden" name="form-name" value="clientes">
 
-<a href="Formulario.html">Regresar al formulario</a>
+        <p hidden>
+            <label>
+                No llenar:
+                <input name="bot-field">
+            </label>
+        </p>
+
+        <label for="nombre">Nombre:</label><br>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+
+        <label for="correo">Correo:</label><br>
+        <input type="email" id="correo" name="correo" required><br><br>
+
+        <label for="mensaje">Mensaje:</label><br>
+        <textarea id="mensaje" name="mensaje" rows="5" cols="30" required></textarea><br><br>
+
+        <button type="submit">Enviar</button>
+
+    </form>
 
 </body>
 </html>
+```
